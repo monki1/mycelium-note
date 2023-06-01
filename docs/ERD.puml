@@ -1,0 +1,35 @@
+@startuml
+
+!define Table(name,desc) class name as "desc" << (T,#FFAAAA) >>
+!define PrimaryKey(x) <color:blue>x</color>
+!define ForeignKey(x) <color:green>x</color>
+!define Index(x) <color:purple>x</color>
+
+package "Database Schema" {
+
+  Table(notes, "notes") {
+    PrimaryKey(id)
+    content: TEXT
+    last_updated: TIMESTAMP
+    Index(idx_notes_last_updated)
+  }
+
+  Table(source_types, "source_types") {
+    PrimaryKey(id)
+    name: VARCHAR(255)
+    Index(idx_source_types_name)
+  }
+
+  Table(sources, "sources") {
+    PrimaryKey(id)
+    ForeignKey(note_id)
+    ForeignKey(source_type_id)
+    value: VARCHAR(255)
+    Index(idx_sources_source_type_value): [source_type_id, value]
+  }
+
+  notes --{ sources : "note_id"
+  source_types --{ sources : "source_type_id"
+}
+
+@enduml
