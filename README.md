@@ -3,7 +3,7 @@
 - #### Concepts
   - Note: a String
   - Source: extracted data from note
-  - __Example__:
+- __Example__:
     
 ```js
 const noteStrings = [
