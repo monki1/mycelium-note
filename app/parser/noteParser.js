@@ -1,6 +1,11 @@
+const symbols = {
+    start: '<',
+    end: '>',
+    separator: ':'
+};
+const regex = new RegExp(`${symbols.start}\\s*([a-zA-Z0-9-]+)\\s*${symbols.separator}\\s*([a-zA-Z0-9-]+)\\s*${symbols.end}`, 'g');
 
 function extractSources(content) {
-    const regex = /<\s*([a-zA-Z0-9-]+)\s*:\s*([a-zA-Z0-9-]+)\s*>/g;
     let match;
     const sources = [];
 
