@@ -3,7 +3,9 @@ const symbols = {
     end: '>',
     separator: ':'
 };
-const regex = new RegExp(`${symbols.start}\\s*([a-zA-Z0-9-]+)\\s*${symbols.separator}\\s*([a-zA-Z0-9-]+)\\s*${symbols.end}`, 'g');
+const typePattern = '[a-zA-Z0-9-_]+';
+const valuePattern = '[a-zA-Z0-9-_]+';
+const regex = new RegExp(`${symbols.start}\\s*(${typePattern})\\s*${symbols.separator}\\s*(${valuePattern})\\s*${symbols.end}`, 'g');
 
 function extractSources(content) {
     let match;
