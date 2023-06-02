@@ -4,7 +4,7 @@
   - Note: a String
   - Source: extracted data from note
   - __Example__:
-    - "This is a note with source: <type1:value1>."
+    - "This is a note with source: \<type1:value1>."
 
 - #### Data Structure
   - Note: 
