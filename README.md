@@ -7,18 +7,18 @@
     
 ```js
 const noteStrings = [
-"Task: <todo:0>",
-"Meeting on <date:2023-06-02>",
-"Project deadline: <deadline:2023-07-14>",
-"Feeling: <mood:happy>",
-"Title: <title:restify-js>",
-"Recipe: <ingredient:flour> <ingredient:sugar> <ingredient:egg>",
-"Status: <status:in-progress>",
-"Another related note: <noteID:8080>",
+  "Another related note: <noteID:8080>",
+  "Task: <todo:0>",
+  "Meeting on <date:2023-06-02>",
+  "Project deadline: <deadline:2023-07-14>",
+  "Feeling: <mood:happy>",
+  "Title: <title:restify-js>",
+  "Recipe: <ingredient:flour> <ingredient:sugar> <ingredient:egg>",
+  "Status: <status:in-progress>",
 ];
 
 ```
-  - __Query__:
+  - __Query__ (pseudo code):
 ```js
 const conditions = [
 { sourceTypeName: 'Type1', sourceValue: 'Value1', operator: '=' },
