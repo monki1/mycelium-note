@@ -1,45 +1,28 @@
 const Source = require('./source');
 const Note = require('./note');
-class NoteParser {
-    static parse(noteContent) {
-        const note = new Note(noteContent);
-        const regex = /<\s*([a-zA-Z0-9-]+)\s*:\s*([a-zA-Z0-9-]+)\s*>/g;
-        let match;
 
-        while ((match = regex.exec(note.content)) !== null) {
-            const type = match[1];
-            const value = match[2];
+function extractSources(content) {
+    const regex = /<\s*([a-zA-Z0-9-]+)\s*:\s*([a-zA-Z0-9-]+)\s*>/g;
+    let match;
+    const sources = [];
 
-            const source = new Source(type, value);
-            note.sources.push(source);
-        }
+    while ((match = regex.exec(content)) !== null) {
+        const type = match[1];
+        const value = match[2];
 
-        return note;
+        const source = new Source(type, value);
+        sources.push(source);
     }
 
-    static parseNotes(noteContents) {
-        const notes = [];
-        let noteId = 1;
-
-        for (const noteContent of noteContents) {
-            const note = NoteParser.parse(noteContent);
-            note.id = noteId++;
-            notes.push(note);
-        }
-
-        return notes;
-    }
+    return sources;
 }
 
-module.exports = NoteParser;
-//
-// const noteContents = [
-// "This is the first note with < type1:value-1>.",
-//     "Here is another note with < type2 : value2 > and <type3:value3>.",
-// ];
-//
-// const parsedNotes = NoteParser.parseNotes(noteContents);
-//
-// console.log(parsedNotes);
-// parsedNotes.forEach(note => note.sources.forEach(source => console.log(source)));
-//
+function parse(noteContent) {
+    const note = new Note(noteContent);
+    note.sources = extractSources(noteContent);
+    return note;
+}
+
+module.exports = {
+    parse
+};
