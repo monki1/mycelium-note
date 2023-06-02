@@ -22,8 +22,7 @@ CREATE TABLE sources (
                          CONSTRAINT fk_source_type_id FOREIGN KEY (source_type_id) REFERENCES source_types(id) -- Foreign key constraint for source_type_id
 );
 
--- Create index on last_updated in notes table
-CREATE INDEX idx_notes_last_updated ON notes(last_updated);
+
 
 -- Create index on name in source_types table
 CREATE INDEX idx_source_types_name ON source_types(name);
