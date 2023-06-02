@@ -21,11 +21,16 @@ const noteStrings = [
   - __Query__ (pseudo code):
 ```js
 const conditions = [
-{ sourceTypeName: 'Type1', sourceValue: 'Value1', operator: '=' },
-{ sourceTypeName: 'Type2', sourceValue: 'Value2', operator: '>' },
+  { sourceTypeName: 'ingredient', sourceValue: 'flour', operator: '=' },
+  { sourceTypeName: 'ingredient', sourceValue: 'sugar', operator: '=' },
+  { sourceTypeName: 'ingredient', sourceValue: 'egg', operator: '=' },
 ];
 query(conditions);
-// return all notes with source type1 = value1 and source type2 > value2
+// return all notes with the ingredients flour, sugar, and egg
+// [ {id: XXX, content: "Recipe: <ingredient:flour> <ingredient:sugar> <ingredient:egg>" } ]
+```
+  - __Result__:
+```js
 ```
 
 - #### Data Structure
