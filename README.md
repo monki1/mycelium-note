@@ -19,14 +19,14 @@ const noteStrings = [
 
 ```
   - __Query__:
-    - ```js
-      const conditions = [
-      { sourceTypeName: 'Type1', sourceValue: 'Value1', operator: '=' },
-      { sourceTypeName: 'Type2', sourceValue: 'Value2', operator: '>' },
-      ];
-      query(conditions);
-      // return all notes with source type1 = value1 and source type2 > value2
-      ```
+```js
+const conditions = [
+{ sourceTypeName: 'Type1', sourceValue: 'Value1', operator: '=' },
+{ sourceTypeName: 'Type2', sourceValue: 'Value2', operator: '>' },
+];
+query(conditions);
+// return all notes with source type1 = value1 and source type2 > value2
+```
 
 - #### Data Structure
   - Note: 
