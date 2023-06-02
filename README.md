@@ -6,11 +6,14 @@
   - __Example__:
     - "This is a note with source: \<type1:value1>."
   - __Query__:
-    - ```const conditions = [
+    - ```js
+      const conditions = [
       { sourceTypeName: 'Type1', sourceValue: 'Value1', operator: '=' },
       { sourceTypeName: 'Type2', sourceValue: 'Value2', operator: '>' },
       ];
-      query(conditions);// return all notes with source type1 = value1 and source type2 > value2```
+      query(conditions);
+      // return all notes with source type1 = value1 and source type2 > value2
+      ```
 
 - #### Data Structure
   - Note: 
