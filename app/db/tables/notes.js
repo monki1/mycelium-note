@@ -7,7 +7,7 @@
  */
 async function create(client, content) {
     try {
-        const query = 'INSERT INTO notes (content) VALUES ($1) RETURNING id';
+        const query = 'INSERT INTO notes (content, last_updated) VALUES ($1, CURRENT_TIMESTAMP) RETURNING id';
         const params = [content];
 
         const result = await client.query(query, params);
@@ -49,7 +49,7 @@ async function remove(client, noteId) {
 
 async function update(client, noteId, newContent) {
     try {
-        const query = 'UPDATE notes SET content = $1 WHERE id = $2';
+        const query = 'UPDATE notes SET content = $1, last_updated = CURRENT_TIMESTAMP WHERE id = $2';
         const params = [newContent, noteId];
 
         const result = await client.query(query, params);
@@ -85,3 +85,4 @@ async function get(client, noteId) {
 
 
 module.exports = { create, remove, get, update };
+
