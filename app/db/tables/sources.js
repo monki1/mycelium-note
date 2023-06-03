@@ -48,10 +48,28 @@ async function remove(client, noteId, typeId, value) {
     }
 }
 
+async function removeID(client, sourceId) {
+    try {
+        // Prepare the SQL query to delete the source with the specified ID
+        const query = 'DELETE FROM sources WHERE id = $1';
+        const values = [sourceId];
+
+        // Execute the query to remove the source
+        await client.query(query, values);
+
+        // Log a confirmation message stating that the source has been removed
+        console.log(`Source with ID ${sourceId} has been removed.`);
+    } catch (error) {
+        // Log and re-throw any errors that occur during the removal process
+        console.error('Error removing source:', error);
+        throw error;
+    }
+}
 
 
 // Export the functions to make them accessible to other modules
 module.exports = {
     create,
     remove,
+    removeID,
 };
