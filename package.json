@@ -1,0 +1,23 @@
+{
+  "name": "mycelium-note",
+  "version": "1.0.0",
+  "description": "![Database Schema](https://github.com/monki1/mycelium-note/blob/a5848efe145306a818e66aa96465ecfcb7c98074/docs/ERD.png)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bookshelf": "^1.2.0",
+    "dotenv": "^16.1.4",
+    "knex": "0.21.21",
+    "mocha": "^10.2.0",
+    "pg": "^8.11.0",
+    "restify": "^11.1.0"
+  }
+}

@@ -2,7 +2,7 @@
 
 - #### Concepts
   - Note: a String
-  - Source: extracted data from note
+  - Tag: extracted data from note
 - __Example__:
     
 ```js
@@ -25,7 +25,7 @@ const conditions = [
   { sourceTypeName: 'ingredient', sourceValue: 'sugar', operator: '=' },
   { sourceTypeName: 'ingredient', sourceValue: 'egg', operator: '=' },
 ];
-query(conditions);
+find(conditions);
 // return all notes with the ingredients flour, sugar, and egg
 // [ {id: XXX, content: "Recipe: <ingredient:flour> <ingredient:sugar> <ingredient:egg>" } ]
 ```
@@ -37,8 +37,8 @@ query(conditions);
   - Note: 
     - id : unique INT
     - content: TEXT
-    - sources: \[ Source ]
-  - Source: 
+    - tags: \[ Tag ]
+  - Tag: 
     - type: VARCHAR(255)
     - value: VARCHAR
 

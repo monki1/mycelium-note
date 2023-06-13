@@ -1,9 +1,7 @@
-class Source {
-
+class Tag {
     constructor(type, value) {
         this.type = type;
         this.value = value;
     }
-
 }
-module.exports = Source;
+module.exports = Tag;

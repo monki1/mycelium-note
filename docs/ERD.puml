@@ -9,27 +9,33 @@ package "Database Schema" {
 
   Table(notes, "notes") {
     PrimaryKey(id)
+    --
     content: TEXT
     last_updated: TIMESTAMP
+    --
     Index(idx_notes_last_updated)
   }
 
-  Table(source_types, "source_types") {
+  Table(tag_types, "tag_types") {
     PrimaryKey(id)
-    name: VARCHAR(255)
-    Index(idx_source_types_name)
+    --
+    type: VARCHAR(255)
+    --
+    Index(idx_tag_types_type)
   }
 
-  Table(sources, "sources") {
+  Table(tags, "tags") {
     PrimaryKey(id)
     ForeignKey(note_id)
-    ForeignKey(source_type_id)
+    ForeignKey(tag_type_id)
+    --
     value: VARCHAR(255)
-    Index(idx_sources_source_type_value): [source_type_id, value]
+    --
+    Index(idx_tags_tag_type_value): [tag_type_id, value]
   }
 
-  notes --{ sources : "note_id"
-  source_types --{ sources : "source_type_id"
+  notes --{ tags : "note_id"
+  tag_types --{ tags : "tag_type_id"
 }
 
 @enduml
