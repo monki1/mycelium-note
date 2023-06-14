@@ -1,14 +1,18 @@
-const { bookshelf } = require('./knexfile');
+const { bookshelf } = require('./bookshelf');
 const Note = require('./Note');
+const User = require('./User');
 const TagType = require('./TagType');
 
 const Tag = bookshelf.model('Tag', {
   tableName: 'tags',
   note() {
-    return this.belongsTo(Note, 'note_id');
+    return this.belongsTo(Note);
   },
   tagType() {
-    return this.belongsTo(TagType, 'tag_type_id');
+    return this.belongsTo(TagType);
+  },
+  user() {
+    return this.belongsTo(User);
   },
 });
 
