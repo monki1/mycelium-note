@@ -1,5 +1,5 @@
 const { bookshelf } = require('./bookshelf');
-const Note = require('./Note');
+// const Note = require('./Note');
 const User = require('./User');
 const TagType = require('./TagType');
 
