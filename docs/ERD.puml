@@ -7,8 +7,18 @@
 
 package "Database Schema" {
 
+  Table(users, "users") {
+    PrimaryKey(id)
+    --
+    username: VARCHAR(255)
+    password: VARCHAR(255)
+    --
+    Index(idx_users_username): [username]
+  }
+
   Table(notes, "notes") {
     PrimaryKey(id)
+    ForeignKey(user_id)
     --
     content: TEXT
     last_updated: TIMESTAMP
@@ -28,14 +38,17 @@ package "Database Schema" {
     PrimaryKey(id)
     ForeignKey(note_id)
     ForeignKey(tag_type_id)
+    ForeignKey(user_id)
     --
     value: VARCHAR(255)
     --
     Index(idx_tags_tag_type_value): [tag_type_id, value]
   }
 
+  users --{ notes : "user_id"
   notes --{ tags : "note_id"
   tag_types --{ tags : "tag_type_id"
+  users --{ tags : "user_id"
 }
 
 @enduml
