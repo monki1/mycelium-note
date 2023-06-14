@@ -1,10 +1,19 @@
+--Create the "users" table
+CREATE TABLE users (
+                       id SERIAL PRIMARY KEY,         -- Primary key of the users table
+                       username VARCHAR(255) UNIQUE,  -- Unique username of the user
+                       password VARCHAR(255)          -- Password of the user
+);
+
 -- Create the "notes" table
 CREATE TABLE notes (
-                       id SERIAL PRIMARY KEY,         -- Primary key of the notes table
-                       content TEXT,                  -- Content of the note
-                       last_updated TIMESTAMP,        -- Timestamp of when the note was last updated
-                       CONSTRAINT idx_notes_last_updated UNIQUE (last_updated)
+                       id SERIAL PRIMARY KEY,
+                       user_id INT REFERENCES users(id) ON DELETE CASCADE,
+                       content TEXT,
+                       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Set the default value to the current timestamp
+
 );
+
 
 -- Create the "tag_types" table
 CREATE TABLE tag_types (
@@ -16,13 +25,12 @@ CREATE TABLE tag_types (
 CREATE TABLE tags (
                          id SERIAL PRIMARY KEY,                                                          -- Primary key of the tags table
                          note_id INT REFERENCES notes(id) ON DELETE CASCADE,                             -- Foreign key referencing the notes table
-                         tag_type_id INT REFERENCES tag_types(id) ON DELETE CASCADE,                     -- Foreign key referencing the tag_types table
+                         tag_type_id INT REFERENCES tag_types(id) ON DELETE CASCADE,                   -- Foreign key referencing the tag_types table
+                         user_id INT REFERENCES users(id) ON DELETE CASCADE,                             -- Foreign key referencing the users table
                          value VARCHAR(255),                                                             -- Value associated with the tag
                          CONSTRAINT fk_note_id FOREIGN KEY (note_id) REFERENCES notes(id),               -- Foreign key constraint for note_id
                          CONSTRAINT fk_tag_type_id FOREIGN KEY (tag_type_id) REFERENCES tag_types(id) -- Foreign key constraint for tag_type_id
 );
-
-
 
 -- Create index on name in tag_types table
 CREATE INDEX idx_tag_types_type ON tag_types(type);

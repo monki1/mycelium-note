@@ -1,0 +1,1 @@
+CREATE USER 'mycelium' WITH PASSWORD 'mycelium_pass';

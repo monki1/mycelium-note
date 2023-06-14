@@ -6,3 +6,6 @@ DROP TABLE IF EXISTS tag_types;
 
 -- Drop the "notes" table
 DROP TABLE IF EXISTS notes;
+
+-- Drop the "users" table
+DROP TABLE IF EXISTS users;

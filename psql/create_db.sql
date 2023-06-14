@@ -1,0 +1,1 @@
+CREATE DATABASE mycelium_db WITH OWNER 'mycelium';
