@@ -1,11 +1,5 @@
-const { bookshelf } = require('./bookshelf');
+const { bookshelf, TagType } = require('./bookshelf');
 
-const TagType = bookshelf.model('TagType', {
-    tableName: 'tag_types',
-    tags() {
-        return this.hasMany('Tag');
-    },
-});
 
 TagType.getByString = async function (string) {
     let tagType;

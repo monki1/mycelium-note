@@ -17,4 +17,47 @@ const knexConfig = {
 const knex = require('knex')(knexConfig.development);
 const bookshelf = require('bookshelf')(knex);
 
-module.exports = { bookshelf };
+const User = bookshelf.model('User', {
+    tableName: 'users',
+    notes() {
+        return this.hasMany('Note');
+    },
+    tags() {
+        return this.hasMany('Tag');
+    },
+});
+
+const Note = bookshelf.model('Note', {
+    tableName: 'notes',
+    user() {
+        return this.belongsTo(User);
+    },
+    tags() {
+        return this.hasMany('Tag');
+    },
+});
+
+
+
+const TagType = bookshelf.model('TagType', {
+    tableName: 'tag_types',
+    tags() {
+        return this.hasMany('Tag');
+    },
+});
+
+const Tag = bookshelf.model('Tag', {
+    tableName: 'tags',
+    note() {
+        return this.belongsTo(Note);
+    },
+    tagType() {
+        return this.belongsTo(TagType);
+    },
+    user() {
+        return this.belongsTo(User);
+    },
+});
+
+
+module.exports = { bookshelf, User, Note, Tag, TagType};
