@@ -1,4 +1,4 @@
-const { authenticate, create, remove } = require('../../../db/query/user');
+const { authenticate, create, remove } = require('../../../db/account/user');
 const assert = require('assert');
 
 let username = Date.now().toString();
