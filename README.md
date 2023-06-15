@@ -1,4 +1,4 @@
-![Database Schema](https://github.com/monki1/mycelium-note/blob/a5848efe145306a818e66aa96465ecfcb7c98074/docs/ERD.png)
+![Database Schema](./docs/ERD.png)
 
 - #### Concepts
   - Note: a String
@@ -21,9 +21,9 @@ const noteStrings = [
   - __Query__ (pseudo code):
 ```js
 const conditions = [
-  { sourceTypeName: 'ingredient', sourceValue: 'flour', operator: '=' },
-  { sourceTypeName: 'ingredient', sourceValue: 'sugar', operator: '=' },
-  { sourceTypeName: 'ingredient', sourceValue: 'egg', operator: '=' },
+  { type: 'ingredient', value: 'flour', operator: '=' },
+  { type: 'ingredient', value: 'sugar', operator: '=' },
+  { type: 'ingredient', value: 'egg', operator: '=' },
 ];
 find(conditions);
 // return all notes with the ingredients flour, sugar, and egg
