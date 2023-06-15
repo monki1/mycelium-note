@@ -31,7 +31,7 @@ async function createTag(tagString, valueString, userId, noteId) {
 
 module.exports.createTag = createTag;
 
-async function getByNoteId(noteId) {
+async function getObjByNoteId(noteId){
   let result = (await Tag.where({ note_id: noteId }).fetchAll()).toJSON();
   // console.log(result);
   let returnArray = [];
@@ -48,9 +48,9 @@ async function getByNoteId(noteId) {
   return returnArray;
 }
 
-module.exports.getByNoteId = getByNoteId;
+module.exports.getObjByNoteId = getObjByNoteId;
 
-async function deleteTagById(tagId) {
+async function deleteById(tagId) {
   try {
     const tag = await Tag.where({ id: tagId }).fetch();
     if (tag) {
@@ -65,4 +65,4 @@ async function deleteTagById(tagId) {
   }
 }
 
-module.exports.deleteTagById = deleteTagById;
+module.exports.deleteById = deleteById;
