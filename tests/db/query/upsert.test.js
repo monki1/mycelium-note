@@ -1,7 +1,7 @@
 const { insert, update } = require('../../../db/query/upsert');
 const assert = require('assert');
 const Tag = require('../../../db/models/Tag');
-// const Note = require('../../../db/models/Note');
+const Note = require('../../../db/models/Note');
 
 const content = Date.now().toString();
 const userId = 1;
@@ -24,7 +24,7 @@ describe('Insert', () => {
     });
 
     it('should insert a new item in tags table', async () => {
-        const tags = await Tag.getByNoteId(insertedNoteId);
+        const tags = await Tag.getObjByNoteId(insertedNoteId);
 
         assert.strictEqual(tags[0].value, exampleNote.tags[0].value);
         assert.strictEqual(tags[0].type, exampleNote.tags[0].type);
@@ -56,11 +56,12 @@ describe('Update', () => {
 
         assert.strictEqual(result.content, updatedNote.content);
 
-        const tags = await Tag.getByNoteId(insertedNoteId);
+        const tags = await Tag.getObjByNoteId(insertedNoteId);
         assert.strictEqual(tags.length, updatedNote.tags.length);
         for (let i = 0; i < tags.length; i++) {
             assert.strictEqual(tags[i].type, updatedNote.tags[i].type);
             assert.strictEqual(tags[i].value, updatedNote.tags[i].value);
         }
+
     });
 });

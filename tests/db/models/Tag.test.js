@@ -26,13 +26,14 @@ describe('Tag', () => {
         });
     });
 
-    describe('#getByNoteId', () => {
+    describe('#getObjByNoteId', () => {
         it('should return an array of tags', async () => {
             const noteId = 1;
-            const tags = await Tag.getByNoteId(noteId);
+            const tags = await Tag.getObjByNoteId(noteId);
             console.log(tags); // Log the result for debugging
             assert.strictEqual(Array.isArray(tags), true);
         });
 
     });
 });
+
