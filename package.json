@@ -8,7 +8,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha \"tests/**/*.js\""
   },
   "author": "",
   "license": "ISC",
@@ -16,8 +16,10 @@
     "bookshelf": "^1.2.0",
     "dotenv": "^16.1.4",
     "knex": "0.21.21",
-    "mocha": "^10.2.0",
     "pg": "^8.11.0",
     "restify": "^11.1.0"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0"
   }
 }
