@@ -3,8 +3,12 @@ const {Secret}= require('../../models/bookshelf');
 
 async function verifySecret(token){
     //returns user id if token is valid
-    const s = await Secret.where({token: token}).fetch();
-    console.log(s);
+    let s = null;
+    try{
+        s = await Secret.where({token: token}).fetch();
+    }catch(e){
+        console.log(e);
+    }
     let expired = false;
     //TODO: check if expired
 
