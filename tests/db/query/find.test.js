@@ -1,5 +1,5 @@
 const { insert } = require('../../../db/query/upsert');
-const { idsByTagEq, idsByTagConditionSingle, byIntersection } = require('../../../db/query/find');
+const { idsByTagEq, idsByTagConditionSingle, byIntersection, all } = require('../../../db/query/find');
 const assert = require('assert');
 // const Tag = require('../../../db/models/Tag');
 
@@ -50,7 +50,7 @@ describe('find', () => {
         assert.strictEqual(result[0], insertedNoteId);
     });
 
-    it('should retieve notes by intersection', async () => {
+    it('should retrieve notes by intersection', async () => {
         const conditions = [
             { type: testType, value: testValue, operator: '=' },
             { type: testType2, value: testValue2, operator: '=' },
@@ -66,6 +66,14 @@ describe('find', () => {
         assert.strictEqual(result[0].tags[0].value, testValue);
         assert.strictEqual(result[0].tags[1].type, testType2);
         assert.strictEqual(result[0].tags[1].value, testValue2);
+
+
+    });
+
+    it('should retrieve all notes', async () => {
+        const result = await all(userId);
+        // console.log("result", result);
+        assert.strictEqual(result.length > 0, true);
 
     });
 
