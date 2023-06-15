@@ -59,5 +59,12 @@ const Tag = bookshelf.model('Tag', {
     },
 });
 
+const Secret = bookshelf.model('Secret', {
+    tableName: 'secrets',
+    user() {
+        return this.belongsTo(User);
+    }
+});
 
-module.exports = { bookshelf, User, Note, Tag, TagType};
+
+module.exports = { bookshelf, User, Note, Tag, TagType, Secret: Secret};
