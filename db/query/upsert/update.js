@@ -8,7 +8,7 @@ const update = async (note, userId, noteId) => {
     const updatedNote = await Note.where({ id: noteId, user_id: userId }).save({ content }, { method: 'update' });
 
     // Get saved tags (getTagsByNoteId) => { type, value, id }
-    const savedTags = await Tag.getByNoteId(noteId);
+    const savedTags = await Tag.getObjByNoteId(noteId);
 
     // Compare the tags with the saved tags by type and value
     const tagsToDelete = savedTags.filter((savedTag) => {
@@ -21,7 +21,7 @@ const update = async (note, userId, noteId) => {
 
     // Delete tags that are not in the new tags
     for (const tagToDelete of tagsToDelete) {
-        await Tag.deleteTagById(tagToDelete.id);
+        await Tag.deleteById(tagToDelete.id);
     }
 
     // Insert tags that are not in the saved tags
