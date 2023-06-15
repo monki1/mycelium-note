@@ -72,7 +72,7 @@ describe('find', () => {
 
     it('should retrieve all notes', async () => {
         const result = await all(userId);
-        // console.log("result", result);
+        console.log("USER NOTE COUNT:", result.length);
         assert.strictEqual(result.length > 0, true);
 
     });
