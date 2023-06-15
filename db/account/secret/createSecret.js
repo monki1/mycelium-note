@@ -10,14 +10,13 @@ function generateToken(){
     return token;
 }
 
-
-
 async function createSecret(userId) {
 
     let token = null;
     let exists = true;
     while (token === null || exists) {
         try {
+            //check if token exists
             const s = await Secret.where({token: token}).fetch();
             if (s !== null) {
                 exists = true;
@@ -28,12 +27,12 @@ async function createSecret(userId) {
         token = generateToken();
     }
 
-    //delete old secrets if exists
-    try{
-        await Secret.where({user_id: userId}).destroy();
-    }catch (e) {
-        console.log("destroy",e);
-    }
+    // //TODO delete old secrets if expired
+    // try{
+    //     await Secret.where({user_id: userId}).destroy();
+    // }catch (e) {
+    //     // console.log("destroy",e);
+    // }
 
     const secret = await
     Secret.forge({
