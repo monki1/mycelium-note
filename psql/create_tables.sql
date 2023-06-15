@@ -32,6 +32,15 @@ CREATE TABLE tags (
                          CONSTRAINT fk_tag_type_id FOREIGN KEY (tag_type_id) REFERENCES tag_types(id) -- Foreign key constraint for tag_type_id
 );
 
+-- serial id, long string token, timestamp expiration
+CREATE TABLE secrets (
+                            id SERIAL PRIMARY KEY,                                                          -- Primary key of the tags table
+                            user_id INT REFERENCES users(id) ON DELETE CASCADE,                             -- Foreign key referencing the notes table
+                            token VARCHAR(2047) UNIQUE,                                                             -- Value associated with the tag
+                            create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Set the default value to the current timestamp
+);
+
+
 -- Create index on name in tag_types table
 CREATE INDEX idx_tag_types_type ON tag_types(type);
 
