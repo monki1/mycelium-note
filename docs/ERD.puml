@@ -45,10 +45,19 @@ package "Database Schema" {
     Index(idx_tags_tag_type_value): [tag_type_id, value]
   }
 
+  Table(secrets, "secrets") {
+    PrimaryKey(id)
+    ForeignKey(user_id)
+    --
+    secret: VARCHAR(2047)
+  }
+
   users --{ notes : "user_id"
+
   notes --{ tags : "note_id"
   tag_types --{ tags : "tag_type_id"
   users --{ tags : "user_id"
+  users - secrets : "user_id"
 }
 
 @enduml
