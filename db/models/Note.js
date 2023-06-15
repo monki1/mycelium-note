@@ -6,7 +6,7 @@ const Tag = require("./Tag");
 Note.getObjectById = async (id) => {
     // console.log("getOBJ", (await Note.where({id}).fetch()).toJSON());
     const note = (await Note.where({id}).fetch()).toJSON();
-    console.log("getOBJ", note);
+    // console.log("getOBJ", note);
     note.tags = await Tag.getObjByNoteId(id);
     return note;
 }
