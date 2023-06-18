@@ -23,9 +23,29 @@ const runRemoveDB = async (client) => {
 }
 
 
+
+//check for flag
+const initFlag = process.argv.includes('--init');
+const removeFlag = process.argv.includes('--remove');
+
+if(initFlag||removeFlag) {
+    const usernameFlagIndex = process.argv.indexOf('--username');
+    const passwordFlagIndex = process.argv.indexOf('--password');
+    const username = usernameFlagIndex > -1 ? process.argv[usernameFlagIndex+1] : process.env.DB_USER;
+    const password = passwordFlagIndex > -1 ? process.argv[passwordFlagIndex+1] : process.env.DB_PASS;
+    const client = createDatabaseClient(username, password);
+    if(initFlag) {
+        runInitDB(client).then(r => process.exit(0)).catch(e => process.exit(1));
+    }
+    if(removeFlag) {
+        runRemoveDB(client).then(r => process.exit(0)).catch(e => process.exit(1));
+    }
+
+
+}
+
 // if no flag, run reset
 runResetDB(createDatabaseClient()).then(r => process.exit(0)).catch(e => process.exit(1));
 
-// const initFlag = process.argv.includes('--init');
 
 
