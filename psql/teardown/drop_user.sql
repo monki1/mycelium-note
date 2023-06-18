@@ -1,1 +1,1 @@
-DROP USER 'mycelium';
+DROP USER mycelium;
